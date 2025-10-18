@@ -7,30 +7,30 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
 private val LightColors = lightColorScheme(
-    primary = VerdePrincipal,     // Barra superior y botones
-    onPrimary = Blanco,           // Texto blanco
-    secondary = VerdeSuave,       // Acentos
-    onSecondary = Blanco,
-    background = VerdeFondo,      // Fondo principal de la app
-    onBackground = GrisTexto,
-    surface = Blanco,             // Cards y fondos secundarios
-    onSurface = GrisTexto
+    primary = AzulSuave,
+    onPrimary = Blanco,
+    secondary = AzulCielo,
+    onSecondary = AzulOscuro,
+    background = MoradoPastel,
+    onBackground = AzulOscuro,
+    surface = Blanco,
+    onSurface = AzulOscuro
 )
 
 private val DarkColors = darkColorScheme(
-    primary = VerdeSuave,
-    onPrimary = VerdeFondo,
-    secondary = VerdeMenta,
-    onSecondary = GrisTexto,
-    background = VerdePrincipal,
-    onBackground = Blanco,
-    surface = VerdeSuave,
-    onSurface = Blanco
+    primary = AzulSuave,
+    onPrimary = Blanco,
+    secondary = AmarilloSuave,
+    onSecondary = AzulOscuro,
+    background = AzulOscuro,
+    onBackground = GrisTexto,
+    surface = AzulMedio,
+    onSurface = GrisTexto
 )
 
 @Composable
 fun PRACTICA1MOVILES22200171Theme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean = true, //
     content: @Composable () -> Unit
 ) {
     val colors = if (darkTheme) DarkColors else LightColors
