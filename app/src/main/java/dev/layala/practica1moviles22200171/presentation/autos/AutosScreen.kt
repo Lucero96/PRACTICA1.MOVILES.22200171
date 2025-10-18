@@ -9,7 +9,6 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -24,143 +23,68 @@ import dev.layala.practica1moviles22200171.presentation.navigation.Routes
 @Composable
 fun AutosScreen(navController: NavController) {
 
-    // 🔹 Lista de autos
     val autos = remember {
         listOf(
-            Auto(
-                "Ferrari",
-                "488 GTB",
-                350000.0,
-                "https://hips.hearstapps.com/es.h-cdn.co/cades/contenidos/14167/ferrari488gtb6.jpg"
-            ),
-            Auto(
-                "Lamborghini",
-                "Huracán EVO",
-                320000.0,
-                "https://hips.hearstapps.com/hmg-prod/images/lamborghini-huracan-super-trofeo-evo2-ok-1622038367.jpg"
-            ),
-            Auto(
-                "Porsche",
-                "911 Turbo S",
-                270000.0,
-                "https://acnews.blob.core.windows.net/imgnews/medium/NAZ_b45d9fcb385a4b85bd9b3bb9c47cda20.webp"
-            ),
-            Auto(
-                "McLaren",
-                "720S",
-                310000.0,
-                "https://mclaren.scene7.com/is/image/mclaren/720S-Coupe_hero:crop-16x9?wid=1920&hei=1080"
-            ),
-            Auto(
-                "Aston Martin",
-                "Vantage",
-                280000.0,
-                "https://s.yimg.com/ny/api/res/1.2/.UmWKbEhEArGwlPPJhnhqw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD02OTk-/https://media.zenfs.com/en/the_drive_634/630e263da89a7c8afc52dec43892c5e6"
-            )
+            Auto("Ferrari", "488 GTB", 350000.0, "https://hips.hearstapps.com/es.h-cdn.co/cades/contenidos/14167/ferrari488gtb6.jpg"),
+            Auto("Lamborghini", "Huracán EVO", 320000.0, "https://hips.hearstapps.com/hmg-prod/images/lamborghini-huracan-super-trofeo-evo2-ok-1622038367.jpg"),
+            Auto("Porsche", "911 Turbo S", 270000.0, "https://acnews.blob.core.windows.net/imgnews/medium/NAZ_b45d9fcb385a4b85bd9b3bb9c47cda20.webp"),
+            Auto("McLaren", "720S", 310000.0, "https://mclaren.scene7.com/is/image/mclaren/720S-Coupe_hero:crop-16x9?wid=1920&hei=1080"),
+            Auto("Aston Martin", "Vantage", 280000.0, "https://s.yimg.com/ny/api/res/1.2/.UmWKbEhEArGwlPPJhnhqw--/YXBwaWQ9aGlnaGxhbmRlcjt3PTEyNDI7aD02OTk-/https://media.zenfs.com/en/the_drive_634/630e263da89a7c8afc52dec43892c5e6")
         )
     }
-
-
     val total = autos.sumOf { it.precio }
 
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             CenterAlignedTopAppBar(
-                title = {
-                    Text(
-                        "🚗 Catálogo de Autos Deportivos",
-                        fontWeight = FontWeight.Bold
-                    )
-                },
+                title = { Text("Catálogo de Autos Deportivos", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onPrimary) },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigate(Routes.MENU) }) {
-                        Icon(
-                            Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Volver al menú"
-                        )
+                        Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Volver", tint = MaterialTheme.colorScheme.onPrimary)
                     }
-                }
+                },
+                colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
             )
         }
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(padding)
-                .padding(16.dp)
-        ) {
+        Column(modifier = Modifier.fillMaxSize().padding(padding).padding(16.dp)) {
 
-            // 🔹 Lista con LazyColumn
-            LazyColumn(
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
+            LazyColumn(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 items(autos) { auto ->
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        elevation = CardDefaults.cardElevation(6.dp),
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(16.dp),
+                        colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surface),
+                        elevation = CardDefaults.cardElevation(4.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(12.dp)
-                        ) {
-                            AsyncImage(
-                                model = auto.imagenUrl,
-                                contentDescription = auto.modelo,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .height(180.dp)
-                            )
+                        Column(Modifier.fillMaxWidth().padding(12.dp)) {
+                            AsyncImage(model = auto.imagenUrl, contentDescription = auto.modelo, modifier = Modifier.fillMaxWidth().height(180.dp))
                             Spacer(Modifier.height(8.dp))
-                            Text(
-                                text = "${auto.marca} ${auto.modelo}",
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 20.sp
-                            )
-                            Text(
-                                text = "Precio: $${"%,.2f".format(auto.precio)}",
-                                fontSize = 16.sp,
-                                color = MaterialTheme.colorScheme.primary
-                            )
+                            Text("${auto.marca} ${auto.modelo}", fontWeight = FontWeight.Bold, fontSize = 20.sp)
+                            Text("Precio: $${"%,.2f".format(auto.precio)}", fontSize = 16.sp, color = MaterialTheme.colorScheme.primary)
                         }
                     }
                 }
             }
 
             Spacer(Modifier.height(12.dp))
-
-            // 🔹 Total
             Card(
                 modifier = Modifier.fillMaxWidth(),
-                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                shape = RoundedCornerShape(10.dp),
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+                colors = CardDefaults.cardColors(MaterialTheme.colorScheme.surface),
+                shape = RoundedCornerShape(12.dp),
+                elevation = CardDefaults.cardElevation(4.dp)
             ) {
-                Text(
-                    text = "💰 Total: $${"%,.2f".format(total)}",
-                    modifier = Modifier.padding(16.dp),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp
-                )
+                Text("💰 Total: $${"%,.2f".format(total)}", modifier = Modifier.padding(16.dp), textAlign = TextAlign.Center, fontWeight = FontWeight.Bold, fontSize = 20.sp)
             }
 
             Spacer(Modifier.height(16.dp))
-
-            // 🔹 Botón Volver
-            OutlinedButton(
+            Button(
                 onClick = { navController.navigate(Routes.MENU) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(45.dp),
-                shape = RoundedCornerShape(10.dp)
-            ) {
-                Text("⬅️ Volver al Menú", fontSize = 16.sp)
-            }
+                modifier = Modifier.fillMaxWidth().height(50.dp),
+                shape = RoundedCornerShape(12.dp),
+                colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.primary, MaterialTheme.colorScheme.onPrimary)
+            ) { Text("⬅️ Volver al Menú", fontSize = 18.sp, fontWeight = FontWeight.Medium) }
         }
     }
 }

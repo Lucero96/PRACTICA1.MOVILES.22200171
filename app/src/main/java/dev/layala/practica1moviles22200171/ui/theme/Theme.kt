@@ -7,24 +7,24 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 
 private val LightColors = lightColorScheme(
-    primary = VerdeBosque,          // Botones principales, topbar
-    onPrimary = Blanco,             // Texto en botones verdes
-    secondary = VerdeHoja,          // Textos destacados
+    primary = VerdePrincipal,     // Barra superior y botones
+    onPrimary = Blanco,           // Texto blanco
+    secondary = VerdeSuave,       // Acentos
     onSecondary = Blanco,
-    background = VerdeMenta,        // Fondo principal
-    onBackground = VerdeBosque,
-    surface = CelesteHielo,         // Cards y superficies
-    onSurface = VerdeBosque
+    background = VerdeFondo,      // Fondo principal de la app
+    onBackground = GrisTexto,
+    surface = Blanco,             // Cards y fondos secundarios
+    onSurface = GrisTexto
 )
 
 private val DarkColors = darkColorScheme(
-    primary = VerdeAgua,
-    onPrimary = VerdeBosque,
+    primary = VerdeSuave,
+    onPrimary = VerdeFondo,
     secondary = VerdeMenta,
-    onSecondary = VerdeBosque,
-    background = VerdeBosque,
+    onSecondary = GrisTexto,
+    background = VerdePrincipal,
     onBackground = Blanco,
-    surface = VerdeHoja,
+    surface = VerdeSuave,
     onSurface = Blanco
 )
 
