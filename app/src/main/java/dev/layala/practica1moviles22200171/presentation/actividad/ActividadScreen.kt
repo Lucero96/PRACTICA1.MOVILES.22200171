@@ -194,6 +194,21 @@ fun ActividadScreen(navController: NavController) {
                     )
                 }
             }
+            Spacer(Modifier.height(16.dp))
+
+            OutlinedButton(
+                onClick = { navController.navigate(Routes.MENU) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(45.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.outlinedButtonColors(
+                    containerColor = MaterialTheme.colorScheme.surface,
+                    contentColor = MaterialTheme.colorScheme.primary
+                )
+            ) {
+                Text("⬅️ Volver al Menú", fontSize = 16.sp)
+            }
         }
     }
 }

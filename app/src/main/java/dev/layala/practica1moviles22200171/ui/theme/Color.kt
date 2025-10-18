@@ -2,10 +2,9 @@ package dev.layala.practica1moviles22200171.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
-
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val VerdeBosque = Color(0xFF006D46)
+val VerdeHoja   = Color(0xFF00774F)
+val VerdeAgua   = Color(0xFF57BD9E)
+val VerdeMenta  = Color(0xFF9CE9DE)
+val CelesteHielo = Color(0xFFBDFFFF)
+val Blanco = Color(0xFFFFFFFF)
